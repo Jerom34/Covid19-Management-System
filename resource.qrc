@@ -1,0 +1,44 @@
+<RCC>
+  <qresource prefix="images">
+    <file>icons/patient status.png</file>
+    <file>icons/positive.png</file>
+    <file>icons/healthstatus.png</file>
+    <file>images/covid19.png</file>
+    <file>images/5403005.jpg</file>
+    <file>images/coronavirus_logo-2.png</file>
+  </qresource>
+  <qresource prefix="icons">
+    <file>icons/patient status.png</file>
+    <file>icons/patient status.png</file>
+    <file>icons/addicon.png</file>
+    <file>icons/back.png</file>
+    <file>icons/contactform.png</file>
+    <file>icons/covid19.png</file>
+    <file>icons/covidlogo.png</file>
+    <file>icons/deleteicon.png</file>
+    <file>icons/doctor.png</file>
+    <file>icons/fire.png</file>
+    <file>icons/forward-1.png</file>
+    <file>icons/hand.png</file>
+    <file>icons/healthstatus.png</file>
+    <file>icons/infectedcities.png</file>
+    <file>icons/logout.png</file>
+    <file>icons/next.png</file>
+    <file>icons/personalinfo.png</file>
+    <file>icons/printbutton.png</file>
+    <file>icons/refreshbutton.png</file>
+    <file>icons/searchbutton.png</file>
+    <file>icons/stayhome.png</file>
+    <file>icons/updatebutton.png</file>
+    <file>icons/user.png</file>
+    <file>icons/usergirl.png</file>
+    <file>icons/vaccinated.png</file>
+    <file>icons/vaccination.png</file>
+    <file>icons/vaccine.png</file>
+  </qresource>
+  <qresource prefix="stackedwidgets_pic">
+    <file>stackedwidgets_pic/20180705-I-quote-vaccines.png</file>
+    <file>stackedwidgets_pic/coronavirus-prevention-infographic_23-2148523347.jpg</file>
+    <file>stackedwidgets_pic/wiw2020-quote.png</file>
+  </qresource>
+</RCC>
