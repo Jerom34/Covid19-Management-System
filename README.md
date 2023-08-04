@@ -6,12 +6,12 @@ Hello! Welcome to my personal project! This desktop application was a recreation
 
 ## Project Snippets
 
-<img src="project_snippets\admin_dashboard.png" width="128"/>
-<img src="project_snippets\create_new_acc.png" width="128"/>
-<img src="project_snippets\login.png" width="128"/>
-<img src="project_snippets\splash_screen.png" width="128"/>
-<img src="project_snippets\user_dashboard.png" width="128"/>
-<img src="project_snippets\vaccination_form.png" width="128"/>
+<img src="project_snippets\admin_dashboard.png"/>
+<img src="project_snippets\create_new_acc.png"/>
+<img src="project_snippets\login.png"/>
+<img src="project_snippets\splash_screen.png"/>
+<img src="project_snippets\user_dashboard.png"/>
+<img src="project_snippets\vaccination_form.png"/>
 
 For a detailed demonstration of the project you can watch this video:
 https://youtu.be/nuNXJ-LiDtU
