@@ -138,7 +138,7 @@ class LoginScreen(QWidget):
         elif check_username == "" or check_password == "":
             self.MissingDialog()
 
-        self.connection = sqlite3.connect('patientdata.db')
+        self.connection = sqlite3.connect('database/patientdata.db')
         self.cursor = self.connection.cursor()
         self.cursor.execute("SELECT USERNAME, PASSWORD from patients")  # QUERY
 
