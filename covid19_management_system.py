@@ -39,7 +39,7 @@ class LoadingScreen(QWidget):
 
         # <======================= DATABASE CREATION =======================>
 
-        self.connection = sqlite3.connect("patientdata.db")
+        self.connection = sqlite3.connect("database/patientdata.db")
         self.cursor = self.connection.cursor()
         self.cursor.execute("CREATE TABLE IF NOT EXISTS patients(ID_NUMBER INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, SEX TEXT, AGE TEXT, CONTACT TEXT, CITY TEXT, STATUS TEXT, USERNAME TEXT, PASSWORD TEXT, Q1 TEXT , Q2 TEXT , Q3 TEXT, Q4 TEXT, Q5 TEXT)")
         self.cursor.close()
@@ -241,7 +241,7 @@ class AdminDashboard(QMainWindow):
         print_messagebox = QMessageBox.question(
             Dashboard_Window, 'Print', "Do you want to print table data?", QMessageBox.Yes | QMessageBox.No)
         if print_messagebox == QMessageBox.Yes:
-            connection = sql.connect('patientdata.db')
+            connection = sql.connect('database/patientdata.db')
 
             df = pd.read_sql(sql="SELECT * from patients", con=connection)
             df.to_excel('patientsdata.xlsx')
@@ -254,7 +254,7 @@ class AdminDashboard(QMainWindow):
     # <======================== LOAD DATA FROM THE DATABASE ========================>
 
     def RefreshButton(self):
-        self.connection = sqlite3.connect("patientdata.db")
+        self.connection = sqlite3.connect("database/patientdata.db")
         query = "SELECT * FROM patients"
         result = self.connection.execute(query)
         self.DashBoard_Widget.setRowCount(0)
@@ -294,7 +294,7 @@ class AddPatient(QWidget):
         status = self.Status_LineEdit.text()
 
         try:
-            self.connection = sqlite3.connect("patientdata.db")
+            self.connection = sqlite3.connect("database/patientdata.db")
             self.cursor = self.connection.cursor()
             self.cursor.execute("INSERT INTO patients (NAME, SEX, AGE, CONTACT, CITY, STATUS) VALUES (?, ?, ?, ?, ?, ?)", (
                 name, sex, age, contact, city, status))
@@ -350,7 +350,7 @@ class DeletePatient(QWidget):
         del_idnumber = self.IDLineEdit.text()
 
         try:
-            self.connection = sqlite3.connect("patientdata.db")
+            self.connection = sqlite3.connect("database/patientdata.db")
             self.cursor = self.connection.cursor()
             self.cursor.execute(
                 "DELETE from patients WHERE ID_NUMBER="+str(del_idnumber))
@@ -409,7 +409,7 @@ class UpdatePatient(QWidget):
         try:
             query = "UPDATE patients SET STATUS = ? WHERE ID_NUMBER = ?"
             parameters = (update_Status, update_IDNumber)
-            self.connection = sqlite3.connect("patientdata.db")
+            self.connection = sqlite3.connect("database/patientdata.db")
             self.cursor = self.connection.cursor()
             self.cursor.execute(query, parameters)
             self.connection.commit()
@@ -462,7 +462,7 @@ class SearchPatient(QWidget):
         searchpatient = ""
         searchpatient = self.SearchID_LineEdit.text()
         try:
-            self.connection = sqlite3.connect("patientdata.db")
+            self.connection = sqlite3.connect("database/patientdata.db")
             self.cursor = self.connection.cursor()
             result = self.cursor.execute(
                 "SELECT * from patients WHERE ID_NUMBER="+str(searchpatient))
@@ -636,7 +636,7 @@ class ShowPersonalStatus(QWidget):
     # <======================= SET IMAGE FUNCTION =======================>
 
     def SetImage(self):
-        self.connection = sqlite3.connect('patientdata.db')
+        self.connection = sqlite3.connect('database/patientdata.db')
         self.cursor = self.connection.cursor()
         query = "SELECT SEX from patients WHERE ID_NUMBER = %d" % (idnumber)
         self.cursor.execute(query)
@@ -656,7 +656,7 @@ class ShowPersonalStatus(QWidget):
 # <========================== SET VALUE TO PERSONAL INFORMATION WINDOW ==========================>
 
     def SetName(self):
-        self.connection = sqlite3.connect('patientdata.db')
+        self.connection = sqlite3.connect('database/patientdata.db')
         self.cursor = self.connection.cursor()
         query = "SELECT NAME from patients WHERE ID_NUMBER = %d" % (idnumber)
         self.cursor.execute(query)
@@ -670,7 +670,7 @@ class ShowPersonalStatus(QWidget):
         self.Name_Label.setText(self.result)
 
     def SetAge(self):
-        self.connection = sqlite3.connect('patientdata.db')
+        self.connection = sqlite3.connect('database/patientdata.db')
         self.cursor = self.connection.cursor()
         query = "SELECT AGE from patients WHERE ID_NUMBER = %d" % (idnumber)
         self.cursor.execute(query)
@@ -684,7 +684,7 @@ class ShowPersonalStatus(QWidget):
         self.Age_Label.setText(self.result)
 
     def SetSex(self):
-        self.connection = sqlite3.connect('patientdata.db')
+        self.connection = sqlite3.connect('database/patientdata.db')
         self.cursor = self.connection.cursor()
         query = "SELECT SEX from patients WHERE ID_NUMBER = %d" % (idnumber)
         self.cursor.execute(query)
@@ -698,7 +698,7 @@ class ShowPersonalStatus(QWidget):
         self.Sex_Label.setText(self.result)
 
     def SetContact(self):
-        self.connection = sqlite3.connect('patientdata.db')
+        self.connection = sqlite3.connect('database/patientdata.db')
         self.cursor = self.connection.cursor()
         query = "SELECT CONTACT from patients WHERE ID_NUMBER = %d" % (
             idnumber)
@@ -713,7 +713,7 @@ class ShowPersonalStatus(QWidget):
         self.Contact_Label.setText(self.result)
 
     def SetCity(self):
-        self.connection = sqlite3.connect('patientdata.db')
+        self.connection = sqlite3.connect('database/patientdata.db')
         self.cursor = self.connection.cursor()
         query = "SELECT CITY from patients WHERE ID_NUMBER = %d" % (idnumber)
         self.cursor.execute(query)
@@ -767,7 +767,7 @@ class HealthDeclaration(QWidget):
     # <======================= SET IMAGE FUNCTION =======================>
 
     def SetImage(self):
-        self.connection = sqlite3.connect('patientdata.db')
+        self.connection = sqlite3.connect('database/patientdata.db')
         self.cursor = self.connection.cursor()
         query = "SELECT STATUS from patients WHERE ID_NUMBER = %d" % (idnumber)
         self.cursor.execute(query)
@@ -856,7 +856,7 @@ class InfectedAreas(QWidget):
     # <========================== LOAD DATA FROM THE DATABASE ==========================>
 
     def RefreshButton(self):
-        self.connection = sqlite3.connect("patientdata.db")
+        self.connection = sqlite3.connect("database/patientdata.db")
         query = "SELECT CITY FROM patients"
         result = self.connection.execute(query)
         self.DashBoard_Widget.setRowCount(0)
@@ -920,7 +920,7 @@ class CreateNewAcc(QWidget):
             print("Could not add")
 
         else:
-            self.connection = sqlite3.connect("patientdata.db")
+            self.connection = sqlite3.connect("database/patientdata.db")
             self.cursor = self.connection.cursor()
             self.cursor.execute("INSERT INTO patients (NAME, SEX, AGE, CONTACT, CITY, STATUS, USERNAME, PASSWORD) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (
                 name, sex, age, contact, city, status, username, password))
@@ -946,7 +946,7 @@ class CreateNewAcc(QWidget):
                 query = "UPDATE patients SET Q1 = ? WHERE USERNAME = ?"
                 parameters = (YES, username)
 
-                self.connection = sqlite3.connect("patientdata.db")
+                self.connection = sqlite3.connect("database/patientdata.db")
                 self.cursor = self.connection.cursor()
 
                 self.cursor.execute(query, parameters)
@@ -957,7 +957,7 @@ class CreateNewAcc(QWidget):
                 query = "UPDATE patients SET Q1 = ? WHERE USERNAME = ?"
                 parameters = (NO, username)
 
-                self.connection = sqlite3.connect("patientdata.db")
+                self.connection = sqlite3.connect("database/patientdata.db")
                 self.cursor = self.connection.cursor()
 
                 self.cursor.execute(query, parameters)
@@ -969,7 +969,7 @@ class CreateNewAcc(QWidget):
                 query = "UPDATE patients SET Q2 = ? WHERE USERNAME = ?"
                 parameters = (YES, username)
 
-                self.connection = sqlite3.connect("patientdata.db")
+                self.connection = sqlite3.connect("database/patientdata.db")
                 self.cursor = self.connection.cursor()
 
                 self.cursor.execute(query, parameters)
@@ -980,7 +980,7 @@ class CreateNewAcc(QWidget):
                 query = "UPDATE patients SET Q2 = ? WHERE USERNAME = ?"
                 parameters = (NO, username)
 
-                self.connection = sqlite3.connect("patientdata.db")
+                self.connection = sqlite3.connect("database/patientdata.db")
                 self.cursor = self.connection.cursor()
 
                 self.cursor.execute(query, parameters)
@@ -992,7 +992,7 @@ class CreateNewAcc(QWidget):
                 query = "UPDATE patients SET Q3 = ? WHERE USERNAME = ?"
                 parameters = (YES, username)
 
-                self.connection = sqlite3.connect("patientdata.db")
+                self.connection = sqlite3.connect("database/patientdata.db")
                 self.cursor = self.connection.cursor()
 
                 self.cursor.execute(query, parameters)
@@ -1003,7 +1003,7 @@ class CreateNewAcc(QWidget):
                 query = "UPDATE patients SET Q3 = ? WHERE USERNAME = ?"
                 parameters = (NO, username)
 
-                self.connection = sqlite3.connect("patientdata.db")
+                self.connection = sqlite3.connect("database/patientdata.db")
                 self.cursor = self.connection.cursor()
 
                 self.cursor.execute(query, parameters)
@@ -1015,7 +1015,7 @@ class CreateNewAcc(QWidget):
                 query = "UPDATE patients SET Q4 = ? WHERE USERNAME = ?"
                 parameters = (YES, username)
 
-                self.connection = sqlite3.connect("patientdata.db")
+                self.connection = sqlite3.connect("database/patientdata.db")
                 self.cursor = self.connection.cursor()
 
                 self.cursor.execute(query, parameters)
@@ -1026,7 +1026,7 @@ class CreateNewAcc(QWidget):
                 query = "UPDATE patients SET Q4 = ? WHERE USERNAME = ?"
                 parameters = (NO, username)
 
-                self.connection = sqlite3.connect("patientdata.db")
+                self.connection = sqlite3.connect("database/patientdata.db")
                 self.cursor = self.connection.cursor()
 
                 self.cursor.execute(query, parameters)
@@ -1038,7 +1038,7 @@ class CreateNewAcc(QWidget):
                 query = "UPDATE patients SET Q5 = ? WHERE USERNAME = ?"
                 parameters = (YES, username)
 
-                self.connection = sqlite3.connect("patientdata.db")
+                self.connection = sqlite3.connect("database/patientdata.db")
                 self.cursor = self.connection.cursor()
 
                 self.cursor.execute(query, parameters)
@@ -1049,7 +1049,7 @@ class CreateNewAcc(QWidget):
                 query = "UPDATE patients SET Q5 = ? WHERE USERNAME = ?"
                 parameters = (NO, username)
 
-                self.connection = sqlite3.connect("patientdata.db")
+                self.connection = sqlite3.connect("database/patientdata.db")
                 self.cursor = self.connection.cursor()
 
                 self.cursor.execute(query, parameters)
@@ -1061,7 +1061,7 @@ class CreateNewAcc(QWidget):
         except:
             self.ErrorDialog()
 
-        self.connection = sqlite3.connect("patientdata.db")
+        self.connection = sqlite3.connect("database/patientdata.db")
         self.cursor = self.connection.cursor()
 
         result = self.cursor.execute(
