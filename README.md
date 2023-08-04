@@ -15,3 +15,6 @@ Hello! Welcome to my personal project! This desktop application was a recreation
 
 For a detailed demonstration of the project you can watch this video:
 https://youtu.be/nuNXJ-LiDtU
+
+You can watch the original project demonstration here:
+https://youtu.be/bJ_SPdXax88
